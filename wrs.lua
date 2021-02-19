@@ -14,6 +14,7 @@ local action = {
     testBundledInput = "testBundledInput"
 }
 local PROTO = "wrs"
+local GROUP = ""
 local myName = nil
 local opened = false
 
@@ -55,6 +56,10 @@ function wrs.getHostname()
     return myName
 end
 
+function wrs.getGroup()
+    return GROUP
+end
+
 function wrs.open(side, host, group)
     if opened then
         print("Connection is already opened")
@@ -63,6 +68,7 @@ function wrs.open(side, host, group)
 
     if not group == nil then
         PROTO = PROTO .. "/" .. group
+        GROUP = group
     end
 
     rednet.open(side)
